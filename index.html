@@ -1,33 +1,341 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <title>Руденко .tech</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вячеслав Руденко | Портфолио</title>
     <style>
-        body { 
-            background: #000; 
-            color: #fff; 
-            font-family: monospace; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            height: 100vh; 
+        :root {
+            --bg-color: #faf7f2;       
+            --text-color: #2c2c2c;      
+            --secondary-color: #6b6b6b;   
+            --border-color: #d6c9b5;      
+            --accent-color: #8b7e6b;      
+            --accent-hover: #e5d9cc;     
+            --font-stack: "Times New Roman", Times, serif;
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
+            padding: 0;
         }
-        .box { 
-            text-align: center; 
-            border: 1px solid #333; 
-            padding: 3rem; 
-            border-radius: 8px;
+
+        body {
+            font-family: var(--font-stack);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            padding: 3rem 1rem;
         }
-        h1 { margin-bottom: 0; }
-        .dot { color: #00ff88; }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+        }
+
+        /* Header */
+        header {
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+            color: var(--text-color);
+        }
+
+        .subtitle {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .location {
+            font-size: 1rem;
+            color: var(--text-color);
+        }
+
+        /* Links */
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .link-item {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 1rem;
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1.2rem;
+            transition: all 0.2s ease;
+            background-color: transparent;
+        }
+
+        .link-item:hover {
+            background-color: var(--accent-hover);
+            border-color: var(--accent-color);
+            color: var(--text-color);
+        }
+
+        /* Availability Block */
+        .availability {
+            border: 1px solid var(--border-color);
+            padding: 1.2rem;
+            margin: 2rem 0;
+            background-color: #fffbf7;    
+        }
+
+        .availability-title {
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            color: var(--accent-color);
+        }
+
+        .availability-text {
+            font-size: 1rem;
+        }
+
+        .availability-text a {
+            color: var(--text-color);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-color);
+            font-weight: 700;
+            transition: border-color 0.2s;
+        }
+
+        .availability-text a:hover {
+            border-bottom: 1px solid transparent;
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 2.5rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        /* Projects List */
+        .project-list {
+            list-style: none;
+        }
+
+        .project-item {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.2s;
+        }
+
+        .project-item:hover {
+            background-color: rgba(214, 201, 181, 0.1); /* очень лёгкий оттенок */
+        }
+
+        .project-item:last-child {
+            border-bottom: none;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+        
+        .project-title:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        .project-lang {
+            font-size: 1rem;
+            color: var(--secondary-color);
+            font-style: italic;
+        }
+
+        .project-desc {
+            font-size: 1rem;
+            color: var(--text-color);
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .tech-item {
+            font-size: 0.95rem;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            background-color: transparent;
+            transition: all 0.2s;
+        }
+
+        .tech-item:hover {
+            background-color: var(--accent-hover);
+            border-color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.95rem;
+            color: var(--secondary-color);
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.5rem; }
+            .project-header { flex-direction: column; gap: 0.5rem; }
+            body { padding: 1.5rem 1rem; }
+        }
     </style>
 </head>
 <body>
-    <div class="box">
-        <h1>rudenko<span class="dot">.</span>tech</h1>
-        <p>скоро здесь будет портфолио</p>
-        <p style="color: #444; margin-top: 2rem;">разработчик </p>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>Руденко Вячеслав Александрович</h1>
+            <div class="subtitle">Developer</div>
+            <div class="location">
+                г. Воронеж, ВГЛТУ
+            </div>
+            
+            <div class="links">
+                <a href="https://github.com/Slava47" target="_blank" class="link-item">GitHub</a>
+                <a href="https://t.me/BeefkaCl" target="_blank" class="link-item">Telegram</a>
+                <a href="https://vk.com/slava541" target="_blank" class="link-item">VK</a>
+            </div>
+        </header>
+
+        <!-- Availability -->
+        <div class="availability">
+            <div class="availability-title">Открыт к заказам</div>
+            <div class="availability-text">
+                Готов взять проект на разработку: Telegram-боты, веб-приложения/приложения, автоматизация.
+                Также открыт к другим предложениям в сфере IT — пишите, обсудим.
+                <a href="https://t.me/BeefkaCl" target="_blank">Связаться в Telegram</a>
+            </div>
+        </div>
+
+        <!-- About -->
+        <section>
+            <h2>Обо мне</h2>
+            <p>
+                Студент Воронежского государственного лесотехнического университета (ВГЛТУ). 
+                Специализируюсь на разработке программного обеспечения: Telegram-боты, веб-приложения/приложения, инфраструктурные решения.
+            </p>
+            <p>
+                Имею опыт выступления на международных конференциях и реализации проектов для реального бизнеса 
+                и волонтёрских организаций. 
+            </p>
+        </section>
+
+        <!-- Pinned Projects -->
+        <section>
+            <h2>Мои проекты</h2>
+            <ul class="project-list">
+                <li class="project-item">
+                    <div class="project-header">
+                        <a href="https://github.com/Slava47/tea-bar-bot" class="project-title" target="_blank">tea-bar-bot</a>
+                        <span class="project-lang">Python</span>
+                    </div>
+                    <div class="project-desc">
+                        Telegram-бот для чайно-коктейльного бара с подбором коктейлей и веб-панелью для аналитики.
+                    </div>
+                </li>
+                <li class="project-item">
+                    <div class="project-header">
+                        <a href="https://github.com/Slava47/greenlink_mvp" class="project-title" target="_blank">greenlink_mvp</a>
+                        <span class="project-lang">Python / Flask</span>
+                    </div>
+                    <div class="project-desc">
+                        Веб-платформа для волонтёров: управление мероприятиями, отчётами, баллами и ролями (Flask, SQLite, Docker).
+                    </div>
+                </li>
+                <li class="project-item">
+                    <div class="project-header">
+                        <a href="https://github.com/Slava47/TgBotVolonter" class="project-title" target="_blank">TgBotVolonter</a>
+                        <span class="project-lang">Python</span>
+                    </div>
+                    <div class="project-desc">
+                        Телеграм-бот для координации и управления деятельностью волонтёрской организации.
+                    </div>
+                </li>
+                <li class="project-item">
+                    <div class="project-header">
+                        <a href="https://github.com/Slava47/k8s-clickhouse" class="project-title" target="_blank">k8s-clickhouse</a>
+                        <span class="project-lang">Kubernetes / ClickHouse</span>
+                    </div>
+                    <div class="project-desc">
+                        Учебный проект направленный на изучение новой технологии
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Tech Stack -->
+        <section>
+            <h2>Технологии</h2>
+            <div class="tech-stack">
+                <span class="tech-item">Python</span>
+                <span class="tech-item">C#</span>
+                <span class="tech-item">Flask</span>
+                <span class="tech-item">ClickHouse</span>
+                <span class="tech-item">Kubernetes</span>
+                <span class="tech-item">Docker</span>
+                <span class="tech-item">Telegram Bot API</span>
+                <span class="tech-item">Git</span>
+                <span class="tech-item">Linux</span>
+                <span class="tech-item">k8s</span>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>2026 Вячеслав Руденко. Все права защищены.</p>
+        </footer>
     </div>
+
 </body>
 </html>
