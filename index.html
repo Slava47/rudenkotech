@@ -154,7 +154,7 @@
         }
 
         .project-item:hover {
-            background-color: rgba(214, 201, 181, 0.1); /* очень лёгкий оттенок */
+            background-color: rgba(214, 201, 181, 0.1);
         }
 
         .project-item:last-child {
@@ -164,8 +164,10 @@
         .project-header {
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
+            align-items: center;
             margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 0.8rem;
         }
 
         .project-title {
@@ -181,15 +183,57 @@
             border-bottom: 1px solid var(--accent-color);
         }
 
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
         .project-lang {
             font-size: 1rem;
             color: var(--secondary-color);
             font-style: italic;
+            background-color: rgba(214, 201, 181, 0.15);
+            padding: 0.2rem 0.8rem;
+            border-radius: 3px;
+        }
+
+        .project-demo-link {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #4a3f32;
+            text-decoration: none;
+            background-color: #e3d8cb;
+            border: 1px solid #b8aa98;
+            padding: 0.3rem 1rem;
+            border-radius: 4px;
+            transition: all 0.2s;
+            letter-spacing: 0.2px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .project-demo-link:hover {
+            background-color: #d6c9b5;
+            border-color: #9e8f7c;
+            color: #2c2c2c;
         }
 
         .project-desc {
             font-size: 1rem;
             color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-desc a {
+            color: var(--text-color);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-color);
+            transition: border-color 0.2s;
+        }
+
+        .project-desc a:hover {
+            border-bottom: 1px solid transparent;
         }
 
         /* Tech Stack */
@@ -225,7 +269,14 @@
 
         @media (max-width: 600px) {
             h1 { font-size: 1.5rem; }
-            .project-header { flex-direction: column; gap: 0.5rem; }
+            .project-header { 
+                flex-direction: column; 
+                align-items: flex-start;
+            }
+            .project-links {
+                width: 100%;
+                justify-content: flex-start;
+            }
             body { padding: 1.5rem 1rem; }
         }
     </style>
@@ -278,7 +329,9 @@
                 <li class="project-item">
                     <div class="project-header">
                         <a href="https://github.com/Slava47/tea-bar-bot" class="project-title" target="_blank">tea-bar-bot</a>
-                        <span class="project-lang">Python</span>
+                        <div class="project-links">
+                            <span class="project-lang">Python</span>
+                        </div>
                     </div>
                     <div class="project-desc">
                         Telegram-бот для чайно-коктейльного бара с подбором коктейлей и веб-панелью для аналитики.
@@ -287,7 +340,10 @@
                 <li class="project-item">
                     <div class="project-header">
                         <a href="https://github.com/Slava47/greenlink_mvp" class="project-title" target="_blank">greenlink_mvp</a>
-                        <span class="project-lang">Python / Flask</span>
+                        <div class="project-links">
+                            <span class="project-lang">Python / Flask</span>
+                            <a href="https://greenlink.rudenko.tech/" target="_blank" class="project-demo-link">Демо</a>
+                        </div>
                     </div>
                     <div class="project-desc">
                         Веб-платформа для волонтёров: управление мероприятиями, отчётами, баллами и ролями (Flask, SQLite, Docker).
@@ -296,7 +352,10 @@
                 <li class="project-item">
                     <div class="project-header">
                         <a href="https://github.com/Slava47/TgBotVolonter" class="project-title" target="_blank">TgBotVolonter</a>
-                        <span class="project-lang">Python</span>
+                        <div class="project-links">
+                            <span class="project-lang">Python</span>
+                            <a href="https://t.me/tgvolonteerbot" target="_blank" class="project-demo-link">@tgvolonteerbot</a>
+                        </div>
                     </div>
                     <div class="project-desc">
                         Телеграм-бот для координации и управления деятельностью волонтёрской организации.
@@ -305,7 +364,9 @@
                 <li class="project-item">
                     <div class="project-header">
                         <a href="https://github.com/Slava47/k8s-clickhouse" class="project-title" target="_blank">k8s-clickhouse</a>
-                        <span class="project-lang">Kubernetes / ClickHouse</span>
+                        <div class="project-links">
+                            <span class="project-lang">Kubernetes / ClickHouse</span>
+                        </div>
                     </div>
                     <div class="project-desc">
                         Учебный проект направленный на изучение новой технологии
