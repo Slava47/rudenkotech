@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" id="html-tag">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вячеслав Руденко | Портфолио</title>
+    <title id="title-ru">Вячеслав Руденко | Портфолио</title>
+    <title id="title-en" lang="en" hidden>Vyacheslav Rudenko | Portfolio</title>
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
         (function(m,e,t,r,i,k,a){
@@ -42,6 +43,7 @@
             display: flex;
             justify-content: center;
             padding: 3rem 1rem;
+            position: relative;
         }
 
         .container {
@@ -49,14 +51,61 @@
             max-width: 700px;
         }
 
-        /* Header */
-        header {
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 2rem;
+        /* Fixed language toggle in top-right corner - теперь как link-item */
+        .lang-toggle-fixed {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            z-index: 1000;
+            display: flex;
+            gap: 0.5rem;
+            background-color: transparent; /* прозрачный фон как у кнопок */
+            padding: 0;
+            border: none;
+            box-shadow: none;
+            backdrop-filter: none;
         }
 
-        h1 {
+        /* Стиль кнопок точно как .link-item */
+        .lang-btn {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 1rem;
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1.2rem;
+            transition: all 0.2s ease;
+            background-color: transparent;
+            font-family: var(--font-stack);
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            min-width: 60px;
+            text-align: center;
+            line-height: normal;
+        }
+
+        .lang-btn:hover {
+            background-color: var(--accent-hover);
+            border-color: var(--accent-color);
+            color: var(--text-color);
+        }
+
+        .lang-btn.active {
+            background-color: var(--accent-hover);
+            border-color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        /* Header */
+        .header-top {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .title-group h1 {
             font-size: 2rem;
             font-weight: 700;
             text-transform: uppercase;
@@ -280,6 +329,39 @@
             text-align: center;
         }
 
+        /* Language visibility utility */
+        [data-lang="en"] {
+            display: none;
+        }
+        body.lang-en [data-lang="ru"] {
+            display: none;
+        }
+        body.lang-en [data-lang="en"] {
+            display: block;
+        }
+        body.lang-en .lang-btn[data-lang-btn="en"],
+        body.lang-ru .lang-btn[data-lang-btn="ru"] {
+            background-color: var(--accent-hover);
+            border-color: var(--accent-color);
+            font-weight: 700;
+        }
+
+        /* small adjustment for mobile so fixed toggle doesn't cover content */
+        @media (max-width: 700px) {
+            body {
+                padding-top: 5rem;
+            }
+            .lang-toggle-fixed {
+                top: 0.8rem;
+                right: 0.8rem;
+            }
+            .lang-btn {
+                padding: 0.4rem 1rem;
+                font-size: 0.9rem;
+                min-width: 55px;
+            }
+        }
+
         @media (max-width: 600px) {
             h1 { font-size: 1.5rem; }
             .project-header { 
@@ -290,54 +372,77 @@
                 width: 100%;
                 justify-content: flex-start;
             }
-            body { padding: 1.5rem 1rem; }
         }
     </style>
 </head>
-<body>
+<body class="lang-ru">
+    <!-- Fixed language toggle в стиле link-item (как кнопки GitHub/Telegram/VK) -->
+    <div class="lang-toggle-fixed">
+        <button class="lang-btn active" data-lang-btn="ru" onclick="switchLanguage('ru')">RU</button>
+        <button class="lang-btn" data-lang-btn="en" onclick="switchLanguage('en')">EN</button>
+    </div>
 
     <div class="container">
         <!-- Header -->
-        <header>
-            <h1>Руденко Вячеслав Александрович</h1>
-            <div class="subtitle">Developer</div>
-            <div class="location">
-                г. Воронеж, ВГЛТУ
+        <div class="header-top">
+            <div class="title-group">
+                <h1 data-lang="ru">Руденко Вячеслав Александрович</h1>
+                <h1 data-lang="en">Vyacheslav Rudenko</h1>
+                <div class="subtitle" data-lang="ru">Developer</div>
+                <div class="subtitle" data-lang="en">Developer</div>
+                <div class="location" data-lang="ru">г. Воронеж, ВГЛТУ</div>
+                <div class="location" data-lang="en">Voronezh, VGLTU</div>
             </div>
-            
-            <div class="links">
-                <a href="https://github.com/Slava47" target="_blank" class="link-item">GitHub</a>
-                <a href="https://t.me/BeefkaCl" target="_blank" class="link-item">Telegram</a>
-                <a href="https://vk.com/slava541" target="_blank" class="link-item">VK</a>
-            </div>
-        </header>
+        </div>
+
+        <div class="links">
+            <a href="https://github.com/Slava47" target="_blank" class="link-item">GitHub</a>
+            <a href="https://t.me/BeefkaCl" target="_blank" class="link-item">Telegram</a>
+            <a href="https://vk.com/slava541" target="_blank" class="link-item">VK</a>
+        </div>
 
         <!-- Availability -->
         <div class="availability">
-            <div class="availability-title">Открыт к заказам</div>
-            <div class="availability-text">
+            <div class="availability-title" data-lang="ru">Открыт к заказам</div>
+            <div class="availability-title" data-lang="en">Open for commissions</div>
+            <div class="availability-text" data-lang="ru">
                 Готов взять проект на разработку: Telegram-боты, веб-приложения/приложения, автоматизация.
                 Также открыт к другим предложениям в сфере IT — пишите, обсудим.
                 <a href="https://t.me/BeefkaCl" target="_blank">Связаться в Telegram</a>
+            </div>
+            <div class="availability-text" data-lang="en">
+                Ready to take on development projects: Telegram bots, web apps, automation.
+                Also open to other IT opportunities — feel free to reach out.
+                <a href="https://t.me/BeefkaCl" target="_blank">Contact via Telegram</a>
             </div>
         </div>
 
         <!-- About -->
         <section>
-            <h2>Обо мне</h2>
-            <p>
+            <h2 data-lang="ru">Обо мне</h2>
+            <h2 data-lang="en">About me</h2>
+            <p data-lang="ru">
                 Студент Воронежского государственного лесотехнического университета (ВГЛТУ). 
                 Специализируюсь на разработке программного обеспечения: Telegram-боты, веб-приложения/приложения, инфраструктурные решения.
             </p>
-            <p>
+            <p data-lang="en">
+                Student at Voronezh State University of Forestry and Technologies (VGLTU). 
+                Specializing in software development: Telegram bots, web applications, infrastructure solutions.
+            </p>
+            <p data-lang="ru">
                 Имею опыт выступления на международных конференциях и реализации проектов для реального бизнеса 
-                и волонтёрских организаций. 
+                и волонтёрских организаций.
+            </p>
+            <p data-lang="en">
+                Experienced in speaking at international conferences and delivering projects for real businesses 
+                and volunteer organizations.
             </p>
         </section>
 
         <!-- Pinned Projects -->
         <section>
-            <h2>Мои проекты</h2>
+            <h2 data-lang="ru">Мои проекты</h2>
+            <h2 data-lang="en">My projects</h2>
             <ul class="project-list">
                 <li class="project-item">
                     <div class="project-header">
@@ -346,8 +451,11 @@
                             <span class="project-lang">Python</span>
                         </div>
                     </div>
-                    <div class="project-desc">
+                    <div class="project-desc" data-lang="ru">
                         Telegram-бот для чайно-коктейльного бара с подбором коктейлей и веб-панелью для аналитики.
+                    </div>
+                    <div class="project-desc" data-lang="en">
+                        Telegram bot for a tea & cocktail bar with drink recommendations and a web analytics panel.
                     </div>
                 </li>
                 <li class="project-item">
@@ -355,11 +463,15 @@
                         <a href="https://github.com/Slava47/greenlink_mvp" class="project-title" target="_blank">greenlink_mvp</a>
                         <div class="project-links">
                             <span class="project-lang">Python / Flask</span>
-                            <a href="https://greenlink.rudenko.tech/" target="_blank" class="project-demo-link">Демо</a>
+                            <a href="https://greenlink.rudenko.tech/" target="_blank" class="project-demo-link" data-lang="ru">Демо</a>
+                            <a href="https://greenlink.rudenko.tech/" target="_blank" class="project-demo-link" data-lang="en">Demo</a>
                         </div>
                     </div>
-                    <div class="project-desc">
+                    <div class="project-desc" data-lang="ru">
                         Веб-платформа для волонтёров: управление мероприятиями, отчётами, баллами и ролями (Flask, SQLite, Docker).
+                    </div>
+                    <div class="project-desc" data-lang="en">
+                        Web platform for volunteers: event management, reports, points and roles (Flask, SQLite, Docker).
                     </div>
                 </li>
                 <li class="project-item">
@@ -367,11 +479,15 @@
                         <a href="https://github.com/Slava47/TgBotVolonter" class="project-title" target="_blank">TgBotVolonter</a>
                         <div class="project-links">
                             <span class="project-lang">Python</span>
-                            <a href="https://t.me/tgvolonteerbot" target="_blank" class="project-demo-link">@tgvolonteerbot</a>
+                            <a href="https://t.me/tgvolonteerbot" target="_blank" class="project-demo-link" data-lang="ru">@tgvolonteerbot</a>
+                            <a href="https://t.me/tgvolonteerbot" target="_blank" class="project-demo-link" data-lang="en">@tgvolonteerbot</a>
                         </div>
                     </div>
-                    <div class="project-desc">
+                    <div class="project-desc" data-lang="ru">
                         Телеграм-бот для координации и управления деятельностью волонтёрской организации.
+                    </div>
+                    <div class="project-desc" data-lang="en">
+                        Telegram bot for coordinating and managing volunteer organization activities.
                     </div>
                 </li>
                 <li class="project-item">
@@ -381,8 +497,11 @@
                             <span class="project-lang">Kubernetes / ClickHouse</span>
                         </div>
                     </div>
-                    <div class="project-desc">
-                        Учебный проект направленный на изучение новой технологии
+                    <div class="project-desc" data-lang="ru">
+                        Учебный проект направленный на изучение новой технологии.
+                    </div>
+                    <div class="project-desc" data-lang="en">
+                        Educational project aimed at learning new technology.
                     </div>
                 </li>
             </ul>
@@ -390,7 +509,8 @@
 
         <!-- Tech Stack -->
         <section>
-            <h2>Технологии</h2>
+            <h2 data-lang="ru">Технологии</h2>
+            <h2 data-lang="en">Tech stack</h2>
             <div class="tech-stack">
                 <span class="tech-item">Python</span>
                 <span class="tech-item">C#</span>
@@ -407,9 +527,48 @@
 
         <!-- Footer -->
         <footer>
-            <p>2026 Вячеслав Руденко. Все права защищены.</p>
+            <p data-lang="ru">2026 Вячеслав Руденко. Все права защищены.</p>
+            <p data-lang="en">2026 Vyacheslav Rudenko. All rights reserved.</p>
         </footer>
     </div>
 
+    <script>
+        function switchLanguage(lang) {
+            const body = document.body;
+            body.classList.remove('lang-ru', 'lang-en');
+            body.classList.add(`lang-${lang}`);
+
+            document.getElementById('html-tag').setAttribute('lang', lang === 'ru' ? 'ru' : 'en');
+
+            const ruBtn = document.querySelector('[data-lang-btn="ru"]');
+            const enBtn = document.querySelector('[data-lang-btn="en"]');
+            if (lang === 'ru') {
+                ruBtn.classList.add('active');
+                enBtn.classList.remove('active');
+            } else {
+                enBtn.classList.add('active');
+                ruBtn.classList.remove('active');
+            }
+
+            const titleRu = document.getElementById('title-ru');
+            const titleEn = document.getElementById('title-en');
+            if (lang === 'ru') {
+                titleRu.removeAttribute('hidden');
+                titleEn.setAttribute('hidden', 'hidden');
+                document.title = titleRu.textContent;
+            } else {
+                titleEn.removeAttribute('hidden');
+                titleRu.setAttribute('hidden', 'hidden');
+                document.title = titleEn.textContent;
+            }
+        }
+
+        (function() {
+            document.body.classList.add('lang-ru');
+            document.getElementById('title-en').setAttribute('hidden', 'hidden');
+            document.querySelector('[data-lang-btn="ru"]').classList.add('active');
+            document.querySelector('[data-lang-btn="en"]').classList.remove('active');
+        })();
+    </script>
 </body>
 </html>
